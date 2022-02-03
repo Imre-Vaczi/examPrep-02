@@ -6,9 +6,7 @@ public class Home extends Building{
 
     public Home(int area, int levels, Address address) {
         super(area, levels, address);
-        if (levels > 3) {
-            throw new IllegalArgumentException();
-        }
+        validatingLevels(levels);
     }
 
     public Home(int area, Address address) {
@@ -18,5 +16,11 @@ public class Home extends Building{
     @Override
     public int calculateNumberOfPeopleCanFit() {
         return getFullArea() / SQUARE_METERS_NEED_PER_PERSON;
+    }
+
+    private void validatingLevels (int levels) {
+        if (levels > 3) {
+            throw new IllegalArgumentException("Invalid value, upper threshold for levels: 3.");
+        }
     }
 }
